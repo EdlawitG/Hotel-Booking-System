@@ -1,7 +1,7 @@
-using AutoMapper;
 using bookingApi.DTOs;
+using bookingApi.Models;
 using bookingApi.Reposiotry;
-namespace bookingApi.Service
+namespace bookingApi.Services
 {
     public class AccountService(AccountRepository authRepository)
     {
@@ -15,10 +15,10 @@ namespace bookingApi.Service
             await _authRepository.RegisterAsyncAdmin(request);
         }
 
-        public async Task<Models.Account> Login(LoginDTO request)
+        public async Task<Account> Login(LoginDTO request)
         {
             
-          return  await _authRepository.LoginAsync(request);
+          return  await _authRepository.LogInAsync(request);
         }
         public async Task LogOut()
         {

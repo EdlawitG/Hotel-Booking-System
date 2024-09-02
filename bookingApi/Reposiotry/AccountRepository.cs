@@ -1,5 +1,4 @@
 using AutoMapper;
-using bookingApi.Helper;
 using bookingApi.Data;
 using bookingApi.DTOs;
 using bookingApi.Models;
@@ -77,7 +76,7 @@ namespace bookingApi.Reposiotry
             }
         }
 
-        public async Task<Account> LoginAsync(LoginDTO request)
+        public async Task<Account> LogInAsync(LoginDTO request)
         {
             try
             {
@@ -91,7 +90,6 @@ namespace bookingApi.Reposiotry
                 user.LastLogin = DateTime.UtcNow;
                 _context.Accounts.Update(user);
                 await _context.SaveChangesAsync();
-                GenerateToken.GenerateAccessToken(_httpContext, user.Id.ToString());
                 return user;
             }
             catch (Exception ex)
@@ -113,24 +111,6 @@ namespace bookingApi.Reposiotry
             }
         }
 
-        public Task<string> RegisterUser(RegisterDTO request)
-        {
-            throw new NotImplementedException();
-        }
 
-        public Task<string> RegisterAdmin(RegisterDTO request)
-        {
-            throw new NotImplementedException();
-        }
-
-        public Task<string> LogIn(LoginDTO request)
-        {
-            throw new NotImplementedException();
-        }
-
-        public Task<string> Logout()
-        {
-            throw new NotImplementedException();
-        }
     }
 }

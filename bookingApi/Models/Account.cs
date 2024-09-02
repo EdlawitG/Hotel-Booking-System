@@ -16,7 +16,7 @@ namespace bookingApi.Models{
         public string? Password { get; set; }
 
         [Required]
-        public string? Role { get; set; }  // Role could be "User" or "Admin"
+        public required string Role { get; set; }  // Role could be "User" or "Admin"
 
         public DateTime CreatedAt { get; set; } = DateTime.Now.ToUniversalTime();
 

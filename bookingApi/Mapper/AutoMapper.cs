@@ -10,6 +10,11 @@ namespace bookingApi.Mapper
         {
             CreateMap<RegisterDTO, Account>().ForMember(dest => dest.Id, opt => opt.Ignore());
             CreateMap<LoginDTO, Account>().ForMember(dest => dest.Id, opt => opt.Ignore());
+            CreateMap<CreateRoomDTO, Room>().ForMember(dest => dest.Id, opt => opt.Ignore());
+            CreateMap<UpdateRoomDTO, Room>().ForMember(dest => dest.Id, opt => opt.Ignore());
+            CreateMap<CreateNewsDTO, News>().ForMember(dest => dest.Id, opt => opt.Ignore());
+            CreateMap<UpdateNewsDTO, News>().ForMember(dest => dest.Id, opt => opt.Ignore());
+            CreateMap<CreateContactusDTOs, Contactus>().ForMember(dest => dest.Id, opt => opt.Ignore());
         }
     }
 }
