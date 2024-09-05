@@ -14,7 +14,9 @@ namespace bookingApi.Mapper
             CreateMap<UpdateRoomDTO, Room>().ForMember(dest => dest.Id, opt => opt.Ignore());
             CreateMap<CreateNewsDTO, News>().ForMember(dest => dest.Id, opt => opt.Ignore());
             CreateMap<UpdateNewsDTO, News>().ForMember(dest => dest.Id, opt => opt.Ignore());
-            CreateMap<CreateContactusDTOs, Contactus>().ForMember(dest => dest.Id, opt => opt.Ignore());
+            CreateMap<CreateContactusDTOs, Contactus>().ForMember(dest => dest.Id, opt => opt.Ignore());        
+            CreateMap<CreateBookingDTO, Booking>().ForMember(dest => dest.Id, opt => opt.Ignore());
+            CreateMap<UpdateBookingDTO, Booking>().ForMember(dest => dest.Id, opt => opt.Ignore());
         }
     }
 }

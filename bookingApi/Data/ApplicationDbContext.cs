@@ -9,5 +9,6 @@ namespace bookingApi.Data
          public DbSet<Contactus> Contactus {get; set;}
          public DbSet<News> News {get; set;}
          public DbSet<Room> Rooms {get; set;}
+         public DbSet<RoomTag> RoomTags {get; set;}
     }
 }

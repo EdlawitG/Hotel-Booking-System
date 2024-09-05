@@ -55,39 +55,34 @@ namespace bookingApi.Controller
             }
             try
             {
-                 var loggedInUser = await _accountService.Login(request);
-        
-        if (loggedInUser == null)
-        {
-            return Unauthorized(new { message = "Invalid credentials" });
-        }
+                var loggedInUser = await _accountService.Login(request);
 
-        // Create claims based on the logged-in user
-        var claims = new List<Claim>
+                if (loggedInUser == null)
+                {
+                    return Unauthorized(new { message = "Invalid credentials" });
+                }
+                var claims = new List<Claim>
         {
-            new(ClaimTypes.Name, loggedInUser.Id.ToString()),
+            new(ClaimTypes.NameIdentifier, loggedInUser.Id.ToString()),
             new(ClaimTypes.Role, loggedInUser.Role)
         };
 
-        var claimsIdentity = new ClaimsIdentity(claims, CookieAuthenticationDefaults.AuthenticationScheme);
-        var authProperties = new AuthenticationProperties
-        {
-            // Set additional authentication properties if needed
-        };
+                var claimsIdentity = new ClaimsIdentity(claims, CookieAuthenticationDefaults.AuthenticationScheme);
+                var authProperties = new AuthenticationProperties
+                {
+                    // Set additional authentication properties if needed
+                };
+                await HttpContext.SignInAsync(
+                    CookieAuthenticationDefaults.AuthenticationScheme,
+                    new ClaimsPrincipal(claimsIdentity),
+                    authProperties);
 
-        // Sign in the user
-        await HttpContext.SignInAsync(
-            CookieAuthenticationDefaults.AuthenticationScheme,
-            new ClaimsPrincipal(claimsIdentity),
-            authProperties);
-
-        return Ok(new { message = "LoggedIn", LoggedInUser = loggedInUser });
-    }
-    catch (System.Exception ex)
-    {
-        // Handle exceptions as necessary
-        return StatusCode(500, new { message = "Internal server error", error = ex.Message });
-    }
+                return Ok(new { message = "LoggedIn", LoggedInUser = loggedInUser });
+            }
+            catch (System.Exception ex)
+            {
+                return StatusCode(500, new { message = "Internal server error", error = ex.Message });
+            }
         }
         [HttpGet("/logout")]
         public async Task<IActionResult> Logout()

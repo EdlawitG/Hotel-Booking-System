@@ -12,6 +12,7 @@ builder.Services.AddSwaggerGen();
 builder.Services.AddDbContext<ApplicationDbContext>(options =>
     options.UseNpgsql(builder.Configuration.GetConnectionString("AppDbContext")));
 builder.Services.AddControllers();
+builder.Services.AddHttpContextAccessor();
 builder.Services.AddScoped<AccountService>();
 builder.Services.AddScoped<AccountRepository>();
 builder.Services.AddScoped<RoomService>();
@@ -21,12 +22,12 @@ builder.Services.AddScoped<NewsService>();
 builder.Services.AddScoped<NewsRepository>();
 builder.Services.AddScoped<ContactusService>();
 builder.Services.AddScoped<ContactusReposiotry>();
+builder.Services.AddScoped<BookingService>();
+builder.Services.AddScoped<BookingRepository>();
 builder.Services.AddAutoMapper(typeof(AutoMapperProfile));
 builder.Services.AddAuthorization();
-builder.Services.AddHttpContextAccessor();
+builder.Services.AddHostedService<RoomStatusService>();
 var cloudinaryConfig = builder.Configuration.GetSection("CloudinarySetting");
-//  builder.Services.Configure<CloudinarySetting>(builder.Configuration.GetSection("CloudinarySetting"));
-
 var cloudinary = new Cloudinary(new Account(
     cloudinaryConfig["CloudName"],
     cloudinaryConfig["ApiKey"],

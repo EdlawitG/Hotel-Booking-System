@@ -48,9 +48,8 @@ namespace bookingApi.Controller
 
             }
         }
-         [Authorize(Roles = "Admin")]
-        [HttpPost("/add-room")]
-       
+        [Authorize(Roles = "Admin")]
+        [HttpPost("/add-room")] 
         public async Task<IActionResult> CreateRoom([FromForm] CreateRoomDTO request)
         {
             if (!ModelState.IsValid)
@@ -67,7 +66,9 @@ namespace bookingApi.Controller
                 return StatusCode(500, new { message = "An error occurred while creating the room", error = ex.Message });
             }
         }
-        [HttpPut("/update-room{id:guid}")]
+        
+        [Authorize(Roles ="Admin")]
+        [HttpPut("/update-room/{id:guid}")]
         public async Task<IActionResult> UpdateProduct(Guid id, UpdateRoomDTO request)
         {
 
@@ -80,10 +81,10 @@ namespace bookingApi.Controller
                 var pro = await _roomService.GetRoomByID(id);
                 if (pro == null)
                 {
-                    return NotFound(new { message = $"No Todo item with Id {id} found." });
+                    return NotFound(new { message = $"No Room item with Id {id} found." });
                 }
                 await _roomService.UpdateRoom(request, id);
-                return Ok(new { message = $" Product Item  with id {id} successfully updated" });
+                return Ok(new { message = $" Room with id {id} successfully updated" });
 
             }
             catch (Exception ex)
@@ -91,7 +92,8 @@ namespace bookingApi.Controller
                 return StatusCode(500, new { message = $"An error occurred while updating the Todo item with", error = ex.Message });
             }
         }
-        [HttpDelete("/delete-room{id:guid}")]
+        [Authorize(Roles ="Admin")]
+        [HttpDelete("/delete-room/{id:guid}")]
         public async Task<IActionResult> DeleteProduct(Guid id)
         {
             if (!ModelState.IsValid)
@@ -112,6 +114,32 @@ namespace bookingApi.Controller
             {
                 return StatusCode(500, new { message = $"An error occurred while deleting the product", error = ex.Message });
             }
+        }
+          [HttpGet("/room-status")]
+        public async Task<IActionResult> FilterByStatus([FromQuery] string status)
+        {
+            var rooms = await _roomService.FilterByStatus(status);
+            return Ok(new { message = $"Filtered Items.", data = rooms });
+        }
+
+        [HttpGet("/room-tag")]
+        public async Task<IActionResult> FilterByRoomTag([FromQuery] int roomtag)
+        {
+            var room = await _roomService.FilterByRoomTag(roomtag);
+            return Ok(new { message = $"Filtered Items.", data = room });
+
+        }
+        [HttpGet("/search-room")]
+        public async Task<IActionResult> SearchRoom([FromQuery] string searchTerm)
+        {
+            var room = await _roomService.SearchRoom(searchTerm);
+            return Ok(new { message = $"Search Items.", data = room });
+            
+        }
+        [HttpGet("/room-price")]
+        public async Task<IActionResult> FilterByPrice([FromQuery] decimal price){
+            var room = await _roomService.FilterByPrice(price);
+            return Ok(new { message = $"Filtered Items.", data = room });
         }
     }
 }
