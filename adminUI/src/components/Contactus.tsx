@@ -1,3 +1,5 @@
+import Layout from "./Layout";
+
 const contactData = [
   {
     fullName: "Aylech",
@@ -33,6 +35,7 @@ const contactData = [
 
 const ContactUsInfo = () => {
   return (
+    <Layout>
     <main className="flex-1 p-8">
       <h1 className="text-2xl font-semibold mb-6">Contact Us Info</h1>
       <table className="min-w-full bg-white border-gray-300 border-separate" style={{ borderSpacing: "0 10px" }}>
@@ -56,6 +59,7 @@ const ContactUsInfo = () => {
         </tbody>
       </table>
     </main>
+    </Layout>
   );
 };
 

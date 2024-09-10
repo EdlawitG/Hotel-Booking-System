@@ -1,4 +1,5 @@
 import React from 'react';
+import Layout from './Layout';
 
 interface Booking {
   id: number;
@@ -36,6 +37,7 @@ const BookingCancellation: React.FC = () => {
   };
 
   return (
+    <Layout>
     <div className="flex flex-col items-center justify-center h-screen bg-gray-50">
       <div className="w-full max-w-4xl bg-white rounded-lg">
         {bookings.map((booking) => (
@@ -61,6 +63,7 @@ const BookingCancellation: React.FC = () => {
         ))}
       </div>
     </div>
+    </Layout>
   );
 };
 

@@ -1,6 +1,7 @@
 import { useState } from "react";
 import Calendar from "react-calendar";
 import 'react-calendar/dist/Calendar.css'; // Import the calendar styles
+import Layout from "./Layout";
 
 const BookingCalendar = () => {
     const [date] = useState<Date | null>(new Date());
@@ -28,6 +29,7 @@ const BookingCalendar = () => {
     };
 
     return (
+        <Layout>
         <div className="flex flex-col justify-center items-center p-18">
             <h2 className="text-2xl font-semibold mb-8">Booking Calendar</h2>
             <div className="flex justify-center">
@@ -39,6 +41,7 @@ const BookingCalendar = () => {
                 />
             </div>
         </div>
+        </Layout>
     );
 };
 

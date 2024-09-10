@@ -2,6 +2,7 @@ import { BiSearch } from "react-icons/bi";
 import { FaCircle } from "react-icons/fa";
 import { FaCircleCheck } from "react-icons/fa6";
 import { Link } from "react-router-dom";
+import Layout from "./Layout";
 
 interface Room {
   id: number;
@@ -86,6 +87,7 @@ function RoomManagement() {
   ];
 
   return (
+    <Layout>
     <div className="p-8">
       <div className="flex justify-between items-center mb-6">
         <Link to="/add-room" className="bg-[#1B2643] text-white px-4 py-3 rounded-lg">
@@ -125,6 +127,7 @@ function RoomManagement() {
         <RoomCard key={room.id} room={room} />
       ))}
     </div>
+    </Layout>
   );
 }
 

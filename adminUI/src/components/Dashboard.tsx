@@ -1,4 +1,5 @@
 import { FaHotel, FaBan, FaClock } from 'react-icons/fa';
+import Layout from './Layout';
 
 interface DashboardCardProps {
   title: string;
@@ -25,6 +26,7 @@ const DashboardCard: React.FC<DashboardCardProps> = ({ title, count, icon, color
 
 const Dashboard = () => {
   return (
+    <Layout>
     <div className="flex justify-center min-h-screen">
       <div className="grid grid-cols-3 gap-10 p-10">
         <DashboardCard title="Bookings" count={320} icon={<FaHotel />} color="text-[#AE885B]" />
@@ -32,6 +34,7 @@ const Dashboard = () => {
         <DashboardCard title="Pending" count={210} icon={<FaClock />} color="text-yellow-500" />
       </div>
     </div>
+    </Layout>
   );
 };
 

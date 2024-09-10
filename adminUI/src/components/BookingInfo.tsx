@@ -1,4 +1,5 @@
 import { FaEye } from "react-icons/fa";
+import Layout from "./Layout";
 
 const BookingInfo = () => {
   const bookings = [
@@ -82,6 +83,7 @@ const BookingInfo = () => {
   };
 
   return (
+    <Layout>
     <div className="p-6 min-h-screen">
       <h2 className="text-3xl font-semibold mb-6">Booking Info</h2>
       <div className="flex gap-4">
@@ -159,6 +161,7 @@ const BookingInfo = () => {
         </div>
       </div>
     </div>
+    </Layout>
   );
 };
 

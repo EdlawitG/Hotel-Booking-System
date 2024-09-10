@@ -1,5 +1,6 @@
 import { BiSearch } from "react-icons/bi";
 import { Link } from "react-router-dom";
+import Layout from "./Layout";
 
 const newsData = [
   {
@@ -27,6 +28,7 @@ const newsData = [
 
 const NewsAndEvents = () => {
   return (
+    <Layout>
     <main className="flex-1 p-8">
       <div className="flex justify-between items-center mb-6">
         <Link
@@ -63,6 +65,7 @@ const NewsAndEvents = () => {
         ))}
       </div>
     </main>
+    </Layout>
   );
 };
 

@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import Layout from "./Layout";
 
 function AddRoom() {
   const [title, setTitle] = useState("");
@@ -47,6 +48,7 @@ function AddRoom() {
   };
 
   return (
+    <Layout >
     <div className="flex flex-col justify-center items-center p-5">
       <h2 className="text-4xl font-semibold p-7 items-center">
         Adding New Room
@@ -152,6 +154,7 @@ function AddRoom() {
         </button>
       </form>
     </div>
+    </Layout>
   );
 }
 
